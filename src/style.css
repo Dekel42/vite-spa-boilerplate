@@ -1,3 +1,6 @@
+/* Import playful font */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+
 /* Reset and Base Styles */
 * {
   margin: 0;
@@ -26,7 +29,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background-color: var(--background);
   color: var(--text-primary);
   line-height: 1.6;
@@ -62,9 +65,17 @@ body {
 }
 
 .logo h1 {
-  font-size: 24px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 28px;
   font-weight: 600;
   color: var(--text-primary);
+  position: relative;
+  animation: logoFloat 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-3px); }
 }
 
 .nav {
@@ -141,6 +152,8 @@ body {
   margin: 0 auto;
   padding: 0 24px;
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 /* Hero Section */
@@ -150,13 +163,38 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   margin: 0 -24px 60px;
   color: white;
+  position: relative;
+  overflow: hidden;
+  background-attachment: fixed;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="30" fill="rgba(255,255,255,0.1)">👶</text></svg>') repeat;
+  background-size: 100px 100px;
+  animation: floatingBabies 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatingBabies {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-100px) translateY(-50px); }
 }
 
 .hero-title {
+  font-family: 'Fredoka', sans-serif;
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 16px;
   line-height: 1.2;
+  position: relative;
+  z-index: 2;
+  animation: titleBounce 3s ease-in-out infinite;
 }
 
 .hero-subtitle {
@@ -165,14 +203,44 @@ body {
   opacity: 0.9;
   max-width: 600px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  animation: subtitleFade 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+@keyframes subtitleFade {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 
 /* Section Titles */
 .section-title {
+  font-family: 'Fredoka', sans-serif;
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 40px;
   color: var(--text-primary);
+  position: relative;
+}
+
+.section-title::after {
+  content: '🎈';
+  position: absolute;
+  right: -50px;
+  top: -5px;
+  font-size: 24px;
+  animation: balloonFloat 3s ease-in-out infinite;
+}
+
+@keyframes balloonFloat {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
 }
 
 .featured-section {
@@ -202,13 +270,26 @@ body {
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow: var(--shadow-lg);
+  animation: wiggle 0.3s ease-in-out;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: translateY(-8px) scale(1.02) rotate(0deg); }
+  25% { transform: translateY(-8px) scale(1.02) rotate(1deg); }
+  75% { transform: translateY(-8px) scale(1.02) rotate(-1deg); }
 }
 
 .product-card.featured {
   border: 2px solid var(--primary-color);
   position: relative;
+  animation: featuredGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes featuredGlow {
+  0% { box-shadow: 0 0 5px rgba(0, 122, 255, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(0, 122, 255, 0.6); }
 }
 
 .featured-badge {
@@ -278,19 +359,53 @@ body {
   border: none;
   padding: 12px 24px;
   border-radius: var(--border-radius);
+  font-family: 'Fredoka', sans-serif;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-to-cart-btn::before {
+  content: '🛒';
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: left 0.3s ease;
+}
+
+.add-to-cart-btn:hover::before {
+  left: 8px;
 }
 
 .add-to-cart-btn:hover {
   background: #0051d5;
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.05);
+  animation: cartBounce 0.4s ease;
+  padding-left: 35px;
+}
+
+@keyframes cartBounce {
+  0%, 100% { transform: translateY(-2px) scale(1.05); }
+  50% { transform: translateY(-4px) scale(1.08); }
 }
 
 .add-to-cart-btn.added {
   background: var(--success-color);
+  animation: successPulse 0.6s ease;
+}
+
+.add-to-cart-btn.added::before {
+  content: '✅';
+  left: 8px;
+}
+
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 /* Cart Sidebar */
@@ -489,6 +604,71 @@ body {
 
 .checkout-btn:hover {
   background: #0051d5;
+}
+
+/* Laughing Baby Animation */
+.laughing-baby {
+  position: fixed;
+  top: 20%;
+  right: -100px;
+  font-size: 60px;
+  z-index: 50;
+  animation: laughingBabyEnter 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes laughingBabyEnter {
+  0% {
+    right: -100px;
+    transform: rotate(0deg) scale(1);
+  }
+  15% {
+    right: 20px;
+    transform: rotate(0deg) scale(1);
+  }
+  20%, 25% {
+    transform: rotate(-5deg) scale(1.1);
+  }
+  30%, 35% {
+    transform: rotate(5deg) scale(1.1);
+  }
+  40%, 45% {
+    transform: rotate(-3deg) scale(1.05);
+  }
+  50%, 55% {
+    transform: rotate(3deg) scale(1.05);
+  }
+  60% {
+    transform: rotate(0deg) scale(1);
+  }
+  85% {
+    right: 20px;
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    right: -100px;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+/* Add baby-themed decorations */
+.main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><text x="30" y="50" font-size="20" fill="rgba(255,192,203,0.1)">🍼</text><text x="150" y="120" font-size="18" fill="rgba(173,216,230,0.1)">🧸</text><text x="80" y="170" font-size="16" fill="rgba(255,255,224,0.1)">👶</text></svg>') repeat;
+  background-size: 200px 200px;
+  animation: babyPatternFloat 30s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes babyPatternFloat {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-200px) translateY(-100px); }
 }
 
 /* Responsive Design */

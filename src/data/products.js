@@ -64,7 +64,7 @@ export const products = [
     name: "High Chair Elite",
     price: 249.99,
     category: "Feeding",
-    image: "https://images.unsplash.com/photo-1621563471499-3a31ad0dd405?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1596298271220-7e9e8d0db3e8?w=400&h=400&fit=crop",
     description: "Adjustable high chair that adapts as your child grows"
   },
   {
@@ -72,7 +72,7 @@ export const products = [
     name: "Baby Carrier Deluxe",
     price: 129.99,
     category: "Baby Gear",
-    image: "https://images.unsplash.com/photo-1578763037154-32bb4c979c88?w=400&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&h=400&fit=crop",
     description: "Ergonomic baby carrier for comfortable bonding"
   },
   {

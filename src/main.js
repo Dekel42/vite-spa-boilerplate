@@ -20,6 +20,7 @@ class App {
         </div>
         <div class="product-grid"></div>
       </main>
+      <div class="laughing-baby">😂👶</div>
       ${this.cartSidebar.render()}
     `;
   }
